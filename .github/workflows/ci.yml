@@ -36,12 +36,12 @@ jobs:
     - name: Build application
       run: npm run build
 
-    - name: Upload coverage to Codecov
+    - name: Upload test coverage
       if: matrix.node-version == '20'
-      uses: codecov/codecov-action@v3
+      uses: actions/upload-artifact@v4
       with:
-        file: ./coverage/lcov.info
-        fail_ci_if_error: true
+        name: coverage-report
+        path: coverage/
 
   build-and-deploy:
     needs: test
